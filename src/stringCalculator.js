@@ -1,6 +1,6 @@
 //escape the delimiter 
 function escapeRegExp(str) {
-  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
 // String Calculator
@@ -25,7 +25,13 @@ function add(numbers){
     }
     
     //split numbers + convert the array of string to  array of numbers
-    const nums = numsPart.split(delimiter).map((n)=>parseInt(n,10));
+    const nums = numsPart.split(delimiter).map((n)=>parseInt(n,10)).filter(n=>!isNaN(n));
+
+    // Find negatives
+    const negatives = nums.filter(n => n < 0);
+    if (negatives.length > 0) {
+        throw new Error(`negative numbers not allowed: ${negatives.join(",")}`);
+    }
 
     //Get the total
     return  nums.reduce((sum,current)=>sum+current,0);
