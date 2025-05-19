@@ -2,7 +2,6 @@
 
 This project is a solution to the String Calculator Kata implemented using Test-Driven Development (TDD) in JavaScript with Jest.
 
----
 
 ## Features Implemented
 
@@ -15,7 +14,7 @@ This project is a solution to the String Calculator Kata implemented using Test-
 - Throws an exception if negative numbers are passed, listing all of them.
 - Ignores numbers greater than 1000.
 
----
+
 
 ## How to Run
 
@@ -30,7 +29,7 @@ npm install
 ```bash
 npm test
 ```
----
+
 
 ## Folder Structure
 
@@ -41,17 +40,15 @@ npm test
 ├── tests/
 │   └── stringCalculator.test.js
 ├── package.json
+├── package-lock.json
 └── README.md
 ```
 
----
----
 
 ## Approach
 
 The solution strictly follows **Test-Driven Development (TDD)** methodology.
 
----
 
 ## Feedback
 
