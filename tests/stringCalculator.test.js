@@ -16,4 +16,8 @@ test("return sum for two numbers",()=>{
 
 test("return sum of muliple comma-sparated numbers",()=>{
     expect(add("10,20,040")).toBe(70);
-})
+});
+
+test("return sum when input contains new lines and commas",()=>{
+    expect(add("1\n2,3")).toBe(6);
+});
