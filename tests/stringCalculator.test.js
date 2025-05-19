@@ -24,5 +24,5 @@ test("return sum when input contains new lines and commas",()=>{
 
 
 test("support custom delimiter using //;\\n syntax", () => {
-    expect(add("//*\n1*2")).toBe(3);
+    expect(add("//|\n1*2")).toBe(3);
 });
