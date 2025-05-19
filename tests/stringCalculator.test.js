@@ -11,5 +11,5 @@ test("return number for a single input",()=>{
 
 
 test("return sum for two numbers",()=>{
-    expect(add("5,10")).toBe(15);
+    expect(add("10,30")).toBe(40);
 });
