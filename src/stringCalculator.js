@@ -33,8 +33,12 @@ function add(numbers){
         throw new Error(`negative numbers not allowed: ${negatives.join(",")}`);
     }
 
+    //filters numbers less than equal 1000
+    const validNums = nums.filter(n=> n <= 1000);
+   
+
     //Get the total
-    return  nums.reduce((sum,current)=>sum+current,0);
+    return  validNums.reduce((sum,current)=>sum+current,0);
 }
 
 
