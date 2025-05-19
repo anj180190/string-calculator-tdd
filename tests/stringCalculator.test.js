@@ -36,3 +36,7 @@ test("throws if negative number is present", () => {
 test("throws with all negative numbers in message", () => {
   expect(() => add("-1,-5,3")).toThrow("negative numbers not allowed: -1,-5");
 });
+
+test("ignores numbers greater than 1000",()=>{
+    expect(add(2,1000)).toBe(2);
+})
