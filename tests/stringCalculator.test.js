@@ -8,3 +8,8 @@ test("return 0 given an empty string",()=>{
 test("return number for a single input",()=>{
     expect(add("5")).toBe(5);
 });
+
+
+test("return sum for two numbers",()=>{
+    expect(add("5,10")).toBe(15);
+});
