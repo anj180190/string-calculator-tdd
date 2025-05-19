@@ -21,3 +21,12 @@ test("return sum of muliple comma-sparated numbers",()=>{
 test("return sum when input contains new lines and commas",()=>{
     expect(add("1\n2,3")).toBe(6);
 });
+
+
+test("return sum when input contains new lines and commas",()=>{
+    expect(add("1\n2,3")).toBe(6);
+});
+
+test("support custom delimiter using //;\\n syntax", () => {
+    expect(add("//;\n1;2")).toBe(3);
+});
