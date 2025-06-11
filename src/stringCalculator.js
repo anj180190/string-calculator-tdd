@@ -3,49 +3,62 @@ function escapeRegExp(str) {
 return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
-// String Calculator
-function add(numbers){
-    //if number is empty 
-    if(numbers==="") return 0;
+// extract delimiter from input
+function getDelimiter(input){
+    if(!input.startsWith("//")) return /,|\n/;
+   
+    //Get the index of \n 
+    const delimiterLineEnd = input.indexOf("\n");
+    const rawDelimiter = input.substring(2, delimiterLineEnd);
+    return new RegExp(escapeRegExp(rawDelimiter));
+}
 
-    let delimiter = /,|\n/; // Default comma and newline
-    let numsPart = numbers;
+// Extract number section from input
+function getNumbersSection(input) {
+    if (!input.startsWith("//")) return input;
 
-    //Check for custom delimiter at the beginning
-    if(numbers.startsWith("//")){
-        //Get the index of \n 
-        const delimiterLineEnd = numbers.indexOf("\n");
-        const rawDelimiter = numbers.substring(2, delimiterLineEnd);
-        // Safely escape special regex characters
-        const safeDelimiter = escapeRegExp(rawDelimiter);
-        //Custom delimiter
-        delimiter = new RegExp(safeDelimiter);
-        //Get the number part
-        numsPart = numbers.substring(delimiterLineEnd+1);
-    }
-    
-    //split numbers + convert to the array and Find non numeric values 
-    const notNumbers = numsPart.split(delimiter).filter(n=>isNaN(n));
+    const delimiterEndIndex = input.indexOf("\n");
+    return input.substring(delimiterEndIndex + 1);
+}
+
+// Validate that all items are numeric
+function validateNonNumericValues(values) {
+    const notNumbers = values.filter(n => isNaN(n));
     if (notNumbers.length > 0) {
-        throw new Error(`non numberic value should not allowed: ${notNumbers.join(",")}`);
+        throw new Error(`Non-numeric values are not allowed: ${notNumbers.join(",")}`);
     }
+}
+
+// Validate no negatives
+function validateNegativeNumbers(numbers) {
+    const negatives = numbers.filter(n => n < 0);
+    if (negatives.length > 0) {
+        throw new Error(`Negative numbers not allowed: ${negatives.join(",")}`);
+    }
+}
+
+// String Calculator
+function add(input){
+    if(input==="") return 0;
+
+    const delimiter = getDelimiter(input);
+    const numsPart = getNumbersSection(input);
+    const rawValues = numsPart.split(delimiter);
+
+    //Find and validate non numeric
+    validateNonNumericValues(rawValues);
 
     //split numbers + convert the array of string to  array of numbers
-    const nums = numsPart.split(delimiter).map((n)=>parseInt(n,10)).filter(n=>!isNaN(n));
-
-
-    // Find negatives
-    const negatives = nums.filter(n => n < 0);
-    if (negatives.length > 0) {
-        throw new Error(`negative numbers not allowed: ${negatives.join(",")}`);
-    }
+    const numbers = rawValues.map((n)=>parseInt(n,10)).filter(n=>!isNaN(n));
+    
+    // Find and validate negatives numbers
+    validateNegativeNumbers(numbers);
 
     //filters numbers less than equal 1000
-    const validNums = nums.filter(n=> n <= 1000);
-   
+    const validNumbers = numbers.filter(n=> n <= 1000);
 
     //Get the total
-    return  validNums.reduce((sum,current)=>sum+current,0);
+    return  validNumbers.reduce((sum,current)=>sum+current,0);
 }
 
 

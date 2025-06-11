@@ -26,7 +26,7 @@ test("support custom delimiter using //;\\n syntax", () => {
 });
 
 test("throws if negative number is present", () => {
-  expect(() => add("1,-2,3")).toThrow("negative numbers not allowed: -2");
+  expect(() => add("1,-2,3")).toThrow("Negative numbers not allowed: -2");
 });
 
 test("ignores numbers greater than 1000",()=>{
@@ -34,9 +34,9 @@ test("ignores numbers greater than 1000",()=>{
 });
 
 test("ignores non numeric values",()=>{
-   expect(()=>add("12,f,56,abc,5,-4")).toThrow("non numberic value should not allowed: f,abc");
+   expect(()=>add("12,f,56,abc,5,-4")).toThrow("Non-numeric values are not allowed: f,abc");
 });
  
 test("throws with all negative numbers in message", () => {
-  expect(() => add("-1,-5,3")).toThrow("negative numbers not allowed: -1,-5");
+  expect(() => add("-1,-5,3")).toThrow("Negative numbers not allowed: -1,-5");
 });
