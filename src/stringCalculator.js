@@ -24,8 +24,15 @@ function add(numbers){
         numsPart = numbers.substring(delimiterLineEnd+1);
     }
     
+    //split numbers + convert to the array and Find non numeric values 
+    const notNumbers = numsPart.split(delimiter).filter(n=>isNaN(n));
+    if (notNumbers.length > 0) {
+        throw new Error(`non numberic value should not allowed: ${notNumbers.join(",")}`);
+    }
+
     //split numbers + convert the array of string to  array of numbers
     const nums = numsPart.split(delimiter).map((n)=>parseInt(n,10)).filter(n=>!isNaN(n));
+
 
     // Find negatives
     const negatives = nums.filter(n => n < 0);
