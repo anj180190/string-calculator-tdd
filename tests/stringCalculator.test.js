@@ -38,5 +38,5 @@ test("throws with all negative numbers in message", () => {
 });
 
 test("ignores numbers greater than 1000",()=>{
-    expect(add("2,1000")).toBe(2);
+    expect(add("2,1001")).toBe(2);
 });
